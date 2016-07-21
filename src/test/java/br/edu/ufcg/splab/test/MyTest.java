@@ -39,7 +39,7 @@ public class MyTest extends GuiTest {
         lastname.setText("serafim");
         Assertions.verifyThat("#lastname", Commons.hasText("serafim"));
 
-        Button search = find("#clickButton");
-        Assert.assertFalse(search.disableProperty().get());
+        Button clickButton = find("#clickButton");
+        Assert.assertFalse(clickButton.disableProperty().get());
     }
 }

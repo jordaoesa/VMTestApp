@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,6 +18,10 @@ public class RootController implements Initializable {
 
     @FXML
     public Button clickButton;
+    @FXML
+    public TextField firstname;
+    @FXML
+    public TextField lastname;
 
     public RootController(){}
 
@@ -26,7 +31,7 @@ public class RootController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Information Dialog");
                 alert.setHeaderText("Look, an Information Dialog");
-                alert.setContentText("I have a great message for you!");
+                alert.setContentText(firstname.getText() + " " + lastname.getText());
 
                 alert.showAndWait();
             }
