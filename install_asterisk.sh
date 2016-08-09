@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 sudo su <<HERE
 
 echo "---------------------------------";
@@ -12,8 +11,26 @@ sudo apt-get update;
 sudo apt-get install asterisk;
 
 sudo cp /etc/asterisk/sip.conf /etc/asterisk/sip.conf.bkp;
-
 sudo cp /etc/asterisk/extensions.conf /etc/asterisk/extensions.conf.bkp;
+sudo cp /etc/asterisk/extensions.ael /etc/asterisk/extensions.ael.bkp;
+sudo cp /etc/asterisk/iax.conf /etc/asterisk/iax.conf.bkp;
+sudo cp /etc/asterisk/users.conf /etc/asterisk/users.conf.bkp;
+sudo cp /etc/asterisk/queues.conf /etc/asterisk/queues.conf.bkp;
+sudo cp /etc/asterisk/agents.conf /etc/asterisk/agents.conf.bkp;
+sudo cp /etc/asterisk/voicemail.conf /etc/asterisk/voicemail.conf.bkp;
+sudo cp /etc/asterisk/musiconhold.conf /etc/asterisk/musiconhold.conf.bkp;
+sudo cp /etc/asterisk/meetme.conf /etc/asterisk/meetme.conf.bkp;
+
+echo "" > /etc/asterisk/extensions.conf
+echo "" > /etc/asterisk/extensions.ael
+echo "" > /etc/asterisk/sip.conf
+echo "" > /etc/asterisk/iax.conf
+echo "" > /etc/asterisk/users.conf
+echo "" > /etc/asterisk/queues.conf
+echo "" > /etc/asterisk/agents.conf
+echo "" > /etc/asterisk/voicemail.conf
+echo "" > /etc/asterisk/musiconhold.conf
+echo "" > /etc/asterisk/meetme.conf
 
 sudo echo "
 
@@ -61,6 +78,10 @@ exten => 9002,1,Dial(SIP/9002)
 " > /etc/asterisk/extensions.conf;
 
 sudo asterisk -rx 'dialplan reload';
+
+sudo asterisk -rx 'reload';
+
+sudo asterisk -r;
 
 
 HERE
