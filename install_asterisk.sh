@@ -82,9 +82,8 @@ HERE
 
 sudo asterisk -rx 'dialplan reload';
 
-sudo asterisk -rx 'reload';
+sudo asterisk -rx 'reload now';
 
-sudo asterisk -rx 'restart now';
-
-sudo asterisk -r
+#sudo asterisk -rx 'restart now';
+#sudo asterisk -r
 
