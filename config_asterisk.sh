@@ -63,7 +63,9 @@ callerid = Diretoria <9002>
 sudo echo "
 
 [ramais]
-; ramais SIP
+;------------------------------
+;-         ramais SIP         -
+;------------------------------
 exten => 9001,1,Dial(SIP/9001)
 exten => 9002,1,Dial(SIP/9002)
 
