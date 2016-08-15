@@ -69,6 +69,22 @@ sudo echo "
 exten => 9001,1,Dial(SIP/9001)
 exten => 9002,1,Dial(SIP/9002)
 
+;----------------------------------------------
+;- Extensoes para gravacao de arquivos de som -
+;----------------------------------------------
+; - Ao ligar para o número 2001 pelo X-LITE, o asterisk atendera a chamada automaticamente 
+;   (o numero 1 logo apos 2001 indica a prioridade nas acoes a serem tomadas)
+; - A aplicacao Answer se responsabilizara por atender a chamada
+; - A aplicacao Record sera executada em sequencia (devido a sua prioridade de numero 2) e 
+;   recordara o audio no arquivo som_ura.gsm
+; - A aplicacao PlayBack executara o arquivo som_ura
+; - Em sequencia a ligacao sera terminada pela aplicacao Hangup
+
+exten => 2001,1,Answer
+exten => 2001,2,Record(som_ura.gsm)
+exten => 2001,3,PlayBack(som_ura)
+exten => 2001,4,Hangup
+
 " > /etc/asterisk/extensions.conf;
 
 sudo chown -R asterisk.asterisk /usr/share/asterisk/sounds/;
