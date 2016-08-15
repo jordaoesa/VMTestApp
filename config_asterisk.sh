@@ -71,6 +71,8 @@ exten => 9002,1,Dial(SIP/9002)
 
 " > /etc/asterisk/extensions.conf;
 
+sudo chown -R asterisk.asterisk /usr/share/asterisk/sounds/;
+
 sudo asterisk -rx 'dialplan reload';
 sudo asterisk -rx 'reload';
 
