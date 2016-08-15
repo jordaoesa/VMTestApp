@@ -87,6 +87,7 @@ exten => 2001,4,Hangup
 
 " > /etc/asterisk/extensions.conf;
 
+
 sudo chown -R asterisk.asterisk /usr/share/asterisk/sounds/;
 
 sudo asterisk -rx 'dialplan reload';
