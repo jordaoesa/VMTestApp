@@ -79,11 +79,55 @@ exten => 9002,1,Dial(SIP/9002)
 ;   recordara o audio no arquivo som_ura.gsm
 ; - A aplicacao PlayBack executara o arquivo som_ura
 ; - Em sequencia a ligacao sera terminada pela aplicacao Hangup
+; - OBS.: A cada novo audio gravado deve-se atribuir um nome diferente. Voce pode configurar varios canais para gravacao.
+; - exten => number,priority,application([parameter[,parameter2...]])
 
 exten => 2001,1,Answer
 exten => 2001,2,Record(som_ura.gsm)
 exten => 2001,3,PlayBack(som_ura)
 exten => 2001,4,Hangup
+
+exten => 2002,1,Answer
+exten => 2002,2,Record(bom.gsm)
+exten => 2002,3,PlayBack(bom)
+exten => 2002,4,Hangup
+
+exten => 2003,1,Answer
+exten => 2003,2,Record(medio.gsm)
+exten => 2003,3,PlayBack(medio)
+exten => 2003,4,Hangup
+
+exten => 2004,1,Answer
+exten => 2004,2,Record(ruim.gsm)
+exten => 2004,3,PlayBack(ruim)
+exten => 2004,4,Hangup
+
+;----------------------------------------------
+;- Configuracao dos botoes para as gravacoes  -
+;----------------------------------------------
+; exten => 2000,Goto(ura,s,1)
+; - Ao ligar 2000 do X-LITE, o asterisk vai buscar o contexto chamado 'ura' 
+; e executar os passos configurados ali.
+; - O 's' aqui usado refencia uma extensao que deve estar configurada no
+; contexto da 'ura' e o 1 define a prioridade
+; - A aplicacao Background(nome_som) tocara o som passado em parametro em backgroud
+; - A aplicacao Goto pode ser utilizada sem passarmos o parametro de contexto (apenas extensoes e prioridade)
+; - A aplicacao PlayBack executara o arquivo de som passado em parametro
+
+exten => 2000,Goto(ura,s,1)
+[ura]
+exten => s,1,Answer
+exten => s,2,BackGround(som_ura)
+
+exten => 1,1,PlayBack(bom)
+exten => 1,2,Goto(s,1)
+
+exten => 2,1,PlayBack(medio)
+exten => 2,2,Goto(s,1)
+
+exten => 3,1,PlayBack(ruim)
+exten => 3,2,Goto(s,1)
+
 
 " > /etc/asterisk/extensions.conf;
 
